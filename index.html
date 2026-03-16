@@ -7,6 +7,13 @@
   <meta name="description" content="Quantix Engine is an advanced AI-driven trading technology platform focused on intelligent market systems and automated trading architecture." />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Quantix Engineering" />
+  <!-- Open Graph (for rich link previews) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://quantixengine.com/" />
+  <meta property="og:title" content="Quantix Engineering — Algorithmic Trading Systems for MT5" />
+  <meta property="og:description" content="Precision-engineered XAUUSD trading systems for MetaTrader 5. Three independent algorithmic systems with verified live signals." />
+  <meta property="og:image" content="https://quantixengine.com/Images/quantix-engineering-team.png" />
+  <meta property="og:site_name" content="Quantix Engineering" />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -26,6 +33,11 @@
         <a href="#performance">Performance</a>
         <a href="#contact">Contact</a>
       </nav>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span class="menu-toggle-bar"></span>
+        <span class="menu-toggle-bar"></span>
+        <span class="menu-toggle-bar"></span>
+      </button>
       <a href="#products" class="btn btn-ghost">Explore Systems</a>
     </div>
   </header>
@@ -72,7 +84,7 @@
         <div class="featured-grid">
           <article class="product-card">
             <div class="product-logo-wrap">
-              <img src="Images/quantix-core-ea.png" alt="Quantix Core EA" class="product-logo" />
+              <img src="Images/quantix-core-ea.png" alt="Quantix Core EA" class="product-logo" loading="lazy" />
             </div>
             <div class="product-body">
               <h3 class="product-name">Quantix Core EA</h3>
@@ -93,7 +105,7 @@
 
           <article class="product-card">
             <div class="product-logo-wrap">
-              <img src="Images/krynex-ea.png" alt="Krynex EA" class="product-logo" />
+              <img src="Images/krynex-ea.png" alt="Krynex EA" class="product-logo" loading="lazy" />
             </div>
             <div class="product-body">
               <h3 class="product-name">Krynex EA</h3>
@@ -114,7 +126,7 @@
 
           <article class="product-card">
             <div class="product-logo-wrap">
-              <img src="Images/ghost-protocol-ea.png" alt="Ghost Protocol EA" class="product-logo" />
+              <img src="Images/ghost-protocol-ea.png" alt="Ghost Protocol EA" class="product-logo" loading="lazy" />
             </div>
             <div class="product-body">
               <h3 class="product-name">Ghost Protocol EA</h3>
@@ -279,19 +291,19 @@
             <article class="analytics-card">
               <span class="analytics-label">Backtest Report</span>
               <div class="analytics-image-wrap">
-                <img src="Images/quantix-backtest.jpg" alt="Quantix Core EA Backtest Report" class="analytics-image" />
+                <img src="Images/quantix-backtest.jpg" alt="Quantix Core EA Backtest Report" class="analytics-image" loading="lazy" />
               </div>
             </article>
             <article class="analytics-card">
               <span class="analytics-label">Equity Curve</span>
               <div class="analytics-image-wrap">
-                <img src="Images/quantix-equity.jpg" alt="Quantix Core EA Equity Curve" class="analytics-image" />
+                <img src="Images/quantix-equity.jpg" alt="Quantix Core EA Equity Curve" class="analytics-image" loading="lazy" />
               </div>
             </article>
             <article class="analytics-card">
               <span class="analytics-label">Trade Snapshot</span>
               <div class="analytics-image-wrap">
-                <img src="Images/quantix-trades.jpg" alt="Quantix Core EA Trade Snapshot" class="analytics-image" />
+                <img src="Images/quantix-trades.jpg" alt="Quantix Core EA Trade Snapshot" class="analytics-image" loading="lazy" />
               </div>
             </article>
           </div>
@@ -306,19 +318,19 @@
             <article class="analytics-card">
               <span class="analytics-label">Backtest Report</span>
               <div class="analytics-image-wrap">
-                <img src="Images/krynex-backtest-1.png" alt="Krynex EA Backtest Report" class="analytics-image" />
+                <img src="Images/krynex-backtest-1.png" alt="Krynex EA Backtest Report" class="analytics-image" loading="lazy" />
               </div>
             </article>
             <article class="analytics-card">
               <span class="analytics-label">Equity Curve</span>
               <div class="analytics-image-wrap">
-                <img src="Images/krynex-equity-1.png" alt="Krynex EA Equity Curve" class="analytics-image" />
+                <img src="Images/krynex-equity-1.png" alt="Krynex EA Equity Curve" class="analytics-image" loading="lazy" />
               </div>
             </article>
             <article class="analytics-card">
               <span class="analytics-label">Trade Snapshot</span>
               <div class="analytics-image-wrap">
-                <img src="Images/krynex-trades-1.png" alt="Krynex EA Trade Snapshot" class="analytics-image" />
+                <img src="Images/krynex-trades-1.png" alt="Krynex EA Trade Snapshot" class="analytics-image" loading="lazy" />
               </div>
             </article>
           </div>
@@ -395,56 +407,63 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     document.addEventListener('DOMContentLoaded', function () {
+      // Lightbox
       var lightbox = document.getElementById('lightbox');
       var lightboxImage = document.getElementById('lightbox-image');
 
-      if (!lightbox || !lightboxImage) return;
+      if (lightbox && lightboxImage) {
+        var openLightbox = function (src, alt) {
+          lightboxImage.src = src;
+          lightboxImage.alt = alt || '';
+          lightbox.classList.add('is-visible');
+        };
 
-      var openLightbox = function (src, alt) {
-        lightboxImage.src = src;
-        lightboxImage.alt = alt || '';
-        lightbox.classList.add('is-visible');
-      };
+        var closeLightbox = function () {
+          lightbox.classList.remove('is-visible');
+          lightboxImage.src = '';
+          lightboxImage.alt = '';
+        };
 
-      var closeLightbox = function () {
-        lightbox.classList.remove('is-visible');
-        lightboxImage.src = '';
-        lightboxImage.alt = '';
-      };
-
-      document.querySelectorAll('.analytics-image').forEach(function (img) {
-        img.addEventListener('click', function () {
-          openLightbox(img.src, img.alt);
+        document.querySelectorAll('.analytics-image').forEach(function (img) {
+          img.addEventListener('click', function () {
+            openLightbox(img.src, img.alt);
+          });
         });
-      });
 
-      lightbox.addEventListener('click', function (e) {
-        if (e.target === lightbox) {
-          closeLightbox();
-        }
-      });
+        lightbox.addEventListener('click', function (e) {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
+        });
 
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-          closeLightbox();
-        }
-      });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            closeLightbox();
+          }
+        });
+      }
 
       // Section reveal animations
       var sections = document.querySelectorAll('main section');
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('reveal-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('reveal-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
 
-      sections.forEach(function (sec) {
-        sec.classList.add('reveal');
-        observer.observe(sec);
-      });
+        sections.forEach(function (sec) {
+          sec.classList.add('reveal');
+          observer.observe(sec);
+        });
+      } else {
+        sections.forEach(function (sec) {
+          sec.classList.add('reveal-visible');
+        });
+      }
 
       // Header scroll state
       var header = document.querySelector('.site-header');
@@ -459,12 +478,98 @@
 
       onScroll();
       window.addEventListener('scroll', onScroll);
+
+      // Mobile menu
+      var menuToggle = document.querySelector('.menu-toggle');
+      var nav = document.querySelector('.nav');
+      var overlay = document.createElement('div');
+      overlay.className = 'nav-overlay';
+      document.body.appendChild(overlay);
+
+      var openMenu = function () {
+        if (!nav || !menuToggle) return;
+        nav.classList.add('is-open');
+        menuToggle.classList.add('is-active');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        overlay.classList.add('is-visible');
+        document.body.style.overflow = 'hidden';
+      };
+
+      var closeMenu = function () {
+        if (!nav || !menuToggle) return;
+        nav.classList.remove('is-open');
+        menuToggle.classList.remove('is-active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        overlay.classList.remove('is-visible');
+        document.body.style.overflow = '';
+      };
+
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('click', function () {
+          nav.classList.contains('is-open') ? closeMenu() : openMenu();
+        });
+      }
+
+      overlay.addEventListener('click', closeMenu);
+
+      if (nav) {
+        nav.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', closeMenu);
+        });
+      }
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && nav && nav.classList.contains('is-open')) {
+          closeMenu();
+        }
+      });
+
+      // Active nav highlight
+      var navLinks = document.querySelectorAll('.nav a[href^="#"]');
+      var allSections = document.querySelectorAll('main section[id]');
+
+      var highlightNav = function () {
+        var scrollPos = window.scrollY + 120;
+        allSections.forEach(function (section) {
+          var top = section.offsetTop;
+          var height = section.offsetHeight;
+          var id = section.getAttribute('id');
+          if (scrollPos >= top && scrollPos < top + height) {
+            navLinks.forEach(function (link) {
+              link.classList.remove('nav-active');
+              if (link.getAttribute('href') === '#' + id) {
+                link.classList.add('nav-active');
+              }
+            });
+          }
+        });
+      };
+
+      window.addEventListener('scroll', highlightNav);
+      highlightNav();
+
+      // Back to top
+      var backToTop = document.getElementById('backToTop');
+      if (backToTop) {
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 400) {
+            backToTop.classList.add('is-visible');
+          } else {
+            backToTop.classList.remove('is-visible');
+          }
+        });
+        backToTop.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
     });
   </script>
 
   <div id="lightbox" class="lightbox">
-    <img id="lightbox-image" src="" alt="" />
+    <img id="lightbox-image" src="" alt="" loading="lazy" />
   </div>
+
+  <button class="back-to-top" aria-label="Back to top" id="backToTop">↑</button>
 </body>
 </html>
 
