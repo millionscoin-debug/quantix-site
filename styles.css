@@ -935,12 +935,14 @@ p {
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* Must stay BELOW .site-header (100) or overlay steals taps from the slide-out .nav */
 .nav-overlay {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 140;
+  z-index: 99;
+  pointer-events: auto;
 }
 
 .nav-overlay.is-visible {
@@ -999,6 +1001,11 @@ section[id] {
     display: flex;
   }
 
+  /* Drawer lives inside header; keep header above overlay (99) so links receive clicks */
+  .site-header {
+    z-index: 110;
+  }
+
   .nav {
     position: fixed;
     top: 0;
@@ -1016,6 +1023,7 @@ section[id] {
     transform: translateX(100%);
     transition: transform 0.3s ease;
     z-index: 150;
+    pointer-events: auto;
   }
 
   .nav.is-open {
@@ -1027,6 +1035,10 @@ section[id] {
     padding: 12px 16px;
     font-size: 16px;
     border-radius: 12px;
+    position: relative;
+    z-index: 1;
+    -webkit-tap-highlight-color: rgba(250, 204, 21, 0.2);
+    touch-action: manipulation;
   }
 
   .nav a:hover {
